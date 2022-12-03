@@ -25,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST);
         }
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_view, ImageColorsFragment.class, null)
-                    .commit();
-        }
+        // Dynamic fragment switch
+        //if (savedInstanceState == null) {
+        //    getSupportFragmentManager().beginTransaction()
+        //            .setReorderingAllowed(true)
+        //            .add(R.id.fragment_container_view, ImageColorsFragment.class, null)
+        //            .commit();
+        //}
         setContentView(R.layout.activity_main);
     }
 

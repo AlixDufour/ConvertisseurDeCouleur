@@ -38,7 +38,7 @@ public class ImageColorsFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                getActivity().startActivityForResult(i, RESULT_LOAD_IMAGE);
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
     }
@@ -46,7 +46,8 @@ public class ImageColorsFragment extends Fragment {
     // Replace image
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("BOOP");
         switch (requestCode) {
             case RESULT_LOAD_IMAGE:
                 if(resultCode == getActivity().RESULT_OK) {
