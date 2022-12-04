@@ -35,13 +35,6 @@
         app:itemIconTint="@drawable/navbar_icons"
         app:labelVisibilityMode="unlabeled"
         app:itemIconSize="35dp">
-    <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.convertisseurdecouleur.ImageColorsFragment" />
-
 
         <FrameLayout
             android:id="@+id/container"
