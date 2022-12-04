@@ -102,12 +102,16 @@ public class ImageColorsFragment extends Fragment {
     protected void updateDominantColors(Bitmap bitmap) {
 
         // Compute the dominant colors
+        // Optimized finder
         List<String> dominantColors = DominantColorFinderOpti.getHexColors(bitmap);
+        // Non-optimized finder (not working)
+        //DominantColorFinder colorFinder = new DominantColorFinder(bitmap);
+        //List<String> dominantColors = colorFinder.getDominantColors();
         colorValue1.setText((dominantColors.get(0)).toUpperCase());
         colorBox1.setBackgroundColor(Color.parseColor(dominantColors.get(0)));
 
-        //colorValue2.setText((dominantColors.get(1)).toUpperCase());
-        //colorBox2.setBackgroundColor(Color.parseColor(dominantColors.get(1)));
+        colorValue2.setText((dominantColors.get(1)).toUpperCase());
+        colorBox2.setBackgroundColor(Color.parseColor(dominantColors.get(1)));
 
         // DEPRECATED
         //DominantColorFinder colorFinder = new DominantColorFinder(bitmap);

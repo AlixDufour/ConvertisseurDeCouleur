@@ -21,11 +21,9 @@ public class DominantColorFinderOpti {
     public static List<String> getHexColors(Bitmap bitmap) {
 
         Map<Integer, Integer> colorMap = new HashMap<>();
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < bitmap.getWidth(); i++) {
+            for (int j = 0; j < bitmap.getHeight(); j++) {
                 int rgb = bitmap.getPixel(i, j);
                 if (!isGray(getRGBArr(rgb))) {
                     Integer counter = colorMap.get(rgb);
@@ -38,24 +36,31 @@ public class DominantColorFinderOpti {
             }
         }
 
-        List<String> hexColors = new ArrayList<>();
-        hexColors.add(getMostCommonColor(colorMap));
+        List<String> hexColors = getMostCommonColors(colorMap, 4);
 
         return hexColors;
     }
 
-    private static String getMostCommonColor(Map<Integer, Integer> map) {
+    private static List<String> getMostCommonColors(Map<Integer, Integer> map, int n) {
         List<Map.Entry<Integer, Integer>> list = new LinkedList<>(map.entrySet());
 
         Collections.sort(list, (Map.Entry<Integer, Integer> obj1, Map.Entry<Integer, Integer> obj2)
                 -> ((Comparable) obj1.getValue()).compareTo(obj2.getValue()));
 
-        Map.Entry<Integer, Integer> entry = list.get(list.size() - 1);
-        int[] rgb = getRGBArr(entry.getKey());
+        List<String> hexColors = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            int[] rgb;
+            if(list.size() >= n) {
+                rgb = getRGBArr((list.get(list.size() - n)).getKey());
+            } else {
+                rgb = getRGBArr((list.get(list.size() - 1)).getKey());
+            }
+            hexColors.add("#" + Integer.toHexString(rgb[0])
+                    + Integer.toHexString(rgb[1])
+                    + Integer.toHexString(rgb[2]));
+        }
 
-        return "#" + Integer.toHexString(rgb[0])
-                + Integer.toHexString(rgb[1])
-                + Integer.toHexString(rgb[2]);
+        return hexColors;
     }
 
     private static int[] getRGBArr(int pixel) {
