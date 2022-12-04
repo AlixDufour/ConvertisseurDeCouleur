@@ -21,24 +21,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 public class ImagePicker extends AppCompatActivity {
 
     ImageView imageView;
-    EditText RedColor;
-    EditText GreenColor;
-    EditText BlueColor;
-    EditText HexColor;
+    TextView RedColor;
+    TextView GreenColor;
+    TextView BlueColor;
+    TextView HexColor;
     Button btnChangeImage;
     ImageButton copyRGB;
     ImageButton copyHEX;
     View colorView;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,127 +78,6 @@ public class ImagePicker extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);  //on lance une activité qui va aller chercher une donnée
             intent.setType("image/*");  //on précise qu'on veut une image
             launcherGetImage.launch(intent);
-        });
-
-        RedColor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0){
-                    return;
-                }else{
-                    int r = Integer.parseInt(RedColor.getText().toString());
-                    int g = Integer.parseInt(GreenColor.getText().toString());
-                    int b = Integer.parseInt(BlueColor.getText().toString());
-
-                    if(r>=0 && r<=255 && g>=0 && g<=255 && b>=0 && b<=255){
-                        colorView.setBackgroundColor(Color.rgb(r, g, b));
-
-                        String hex = String.format("#%02x%02x%02x", r, g,b);
-                        HexColor.setText(hex);
-                    }else{
-                        Toast.makeText(ImagePicker.this, "Mauvaise valeur", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        GreenColor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0){
-                    return;
-                }else{
-                    int r = Integer.parseInt(RedColor.getText().toString());
-                    int g = Integer.parseInt(GreenColor.getText().toString());
-                    int b = Integer.parseInt(BlueColor.getText().toString());
-
-                    if(r>=0 && r<=255 && g>=0 && g<=255 && b>=0 && b<=255){
-                        colorView.setBackgroundColor(Color.rgb(r, g, b));
-
-                        String hex = String.format("#%02x%02x%02x", r, g,b);
-                        HexColor.setText(hex);
-                    }else{
-                        Toast.makeText(ImagePicker.this, "Mauvaise valeur", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        BlueColor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0){
-                    return;
-                }else{
-                    int r = Integer.parseInt(RedColor.getText().toString());
-                    int g = Integer.parseInt(GreenColor.getText().toString());
-                    int b = Integer.parseInt(BlueColor.getText().toString());
-
-                    if(r>=0 && r<=255 && g>=0 && g<=255 && b>=0 && b<=255){
-                        colorView.setBackgroundColor(Color.rgb(r, g, b));
-
-                        String hex = String.format("#%02x%02x%02x", r, g,b);
-                        HexColor.setText(hex);
-                    }else{
-                        Toast.makeText(ImagePicker.this, "Mauvaise valeur", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        HexColor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0 || s.length() != 7 || s.subSequence(0,1) != "#"){
-                    return;
-                }else{
-                    String hex = String.valueOf(s.subSequence(1,s.length()));
-
-                    int color = Color.parseColor(hex);
-                    int r = Color.red(color);
-                    int g = Color.green(color);
-                    int b = Color.blue(color);
-
-                    RedColor.setText(Integer.toString(r));
-                    GreenColor.setText(Integer.toString(g));
-                    BlueColor.setText(Integer.toString(b));
-
-                    colorView.setBackgroundColor(color);
-                    HexColor.setText("#" + hex);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
         });
 
                 imageView.setOnTouchListener(new View.OnTouchListener() {

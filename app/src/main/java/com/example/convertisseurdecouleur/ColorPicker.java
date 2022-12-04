@@ -7,12 +7,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ColorPicker extends AppCompatActivity {
     Button btn;
-    ConstraintLayout cstrLayout;
+    View colorView;
     int defaultColor;
 
     @Override
@@ -21,7 +22,7 @@ public class ColorPicker extends AppCompatActivity {
         setContentView(R.layout.activity_colorpicker);
 
         btn = findViewById(R.id.btn);
-        cstrLayout = findViewById(R.id.layout);
+        colorView = findViewById(R.id.viewPicker);
 
         defaultColor = ContextCompat.getColor(ColorPicker.this, com.google.android.material.R.color.design_default_color_primary);
 
@@ -43,7 +44,7 @@ public class ColorPicker extends AppCompatActivity {
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 defaultColor = color;
-                cstrLayout.setBackgroundColor(defaultColor);
+                colorView.setBackgroundColor(defaultColor);
             }
         });
         ambilWarnaDialog.show();
