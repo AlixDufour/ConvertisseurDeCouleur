@@ -48,16 +48,18 @@ public class DominantColorFinderOpti {
                 -> ((Comparable) obj1.getValue()).compareTo(obj2.getValue()));
 
         List<String> hexColors = new ArrayList<>();
-        for(int i = 0; i < n; i++) {
-            int[] rgb;
-            if(list.size() >= n) {
-                rgb = getRGBArr((list.get(list.size() - n)).getKey());
-            } else {
-                rgb = getRGBArr((list.get(list.size() - 1)).getKey());
+        int x = 0; // compteurs de couleurs trouvées
+        int i = 0;
+        int color = 0, savedColor = 0;
+        while(x < n && i < list.size()) { // Tant qu'on a pas trouvé toutes nos couleurs
+            color = (list.get(list.size() - 1 - i).getKey());
+            if(savedColor != color) { // TODO Remplacer ça par un algorithme de distance
+                int[] rgb = getRGBArr(color);
+                hexColors.add(intToHex(rgb));
+                savedColor = color;
+                x++;
             }
-            hexColors.add("#" + Integer.toHexString(rgb[0])
-                    + Integer.toHexString(rgb[1])
-                    + Integer.toHexString(rgb[2]));
+            i++;
         }
 
         return hexColors;
@@ -83,5 +85,17 @@ public class DominantColorFinderOpti {
             }
         }
         return true;
+    }
+
+    private static String intToHex(int[] rgbArr) {
+        String ret = "#";
+        for(int i = 0; i < 3; i++) {
+            String val = Integer.toHexString(rgbArr[i]);
+            while(val.length() < 2) {
+                val = "0" + val;
+            }
+            ret += val;
+        }
+        return ret;
     }
 }

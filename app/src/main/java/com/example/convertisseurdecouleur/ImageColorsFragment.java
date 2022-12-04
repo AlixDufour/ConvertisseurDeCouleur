@@ -1,5 +1,10 @@
 package com.example.convertisseurdecouleur;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,6 +81,31 @@ public class ImageColorsFragment extends Fragment {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
+
+        colorButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyColorFromNumber(1);
+            }
+        });
+        colorButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyColorFromNumber(2);
+            }
+        });
+        colorButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyColorFromNumber(3);
+            }
+        });
+        colorButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyColorFromNumber(4);
+            }
+        });
     }
 
     // Replace image
@@ -102,16 +133,25 @@ public class ImageColorsFragment extends Fragment {
     protected void updateDominantColors(Bitmap bitmap) {
 
         // Compute the dominant colors
+
         // Optimized finder
         List<String> dominantColors = DominantColorFinderOpti.getHexColors(bitmap);
+
         // Non-optimized finder (not working)
         //DominantColorFinder colorFinder = new DominantColorFinder(bitmap);
         //List<String> dominantColors = colorFinder.getDominantColors();
+
         colorValue1.setText((dominantColors.get(0)).toUpperCase());
         colorBox1.setBackgroundColor(Color.parseColor(dominantColors.get(0)));
 
         colorValue2.setText((dominantColors.get(1)).toUpperCase());
         colorBox2.setBackgroundColor(Color.parseColor(dominantColors.get(1)));
+
+        colorValue3.setText((dominantColors.get(2)).toUpperCase());
+        colorBox3.setBackgroundColor(Color.parseColor(dominantColors.get(2)));
+
+        colorValue4.setText((dominantColors.get(3)).toUpperCase());
+        colorBox4.setBackgroundColor(Color.parseColor(dominantColors.get(3)));
 
         // DEPRECATED
         //DominantColorFinder colorFinder = new DominantColorFinder(bitmap);
@@ -132,5 +172,26 @@ public class ImageColorsFragment extends Fragment {
         // Make the table visible
         colorTableTitle.setVisibility(View.VISIBLE);
         colorTable.setVisibility(View.VISIBLE);
+    }
+
+    public void copyColorFromNumber(int colorNumber) {
+        switch (colorNumber) {
+            case 1:
+                copyColor(colorValue1.getText()); break;
+            case 2:
+                copyColor(colorValue2.getText()); break;
+            case 3:
+                copyColor(colorValue3.getText()); break;
+            case 4:
+                copyColor(colorValue4.getText()); break;
+        }
+    }
+
+    protected void copyColor(CharSequence text) {
+        String value = String.valueOf(text);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(getContext(), ClipboardManager.class);
+        ClipData clip = ClipData.newPlainText("Dominant color", value);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(getContext(), "Color copied to clipboard!", Toast.LENGTH_SHORT).show();
     }
 }
