@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/btnChangeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:text="change image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgColorPicker" />
+
+    <ImageView
+        android:id="@+id/imgColorPicker"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey"
+        android:src="@drawable/colorpicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRGB"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:text="RGB:"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnChangeImage" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/red"
+        app:layout_constraintStart_toStartOf="@+id/textViewRGB"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRGB" />
+
+    <EditText
+        android:id="@+id/editRedColor"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/view" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <EditText
+        android:id="@+id/editGreenColor"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintStart_toEndOf="@+id/view2" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <EditText
+        android:id="@+id/editBlueColor"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toEndOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/Hex"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:text="HEX:"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewRGB"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <EditText
+        android:id="@+id/editHexColor"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="#ffffff"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/editBlueColor"
+        app:layout_constraintTop_toBottomOf="@+id/Hex" />
+
+    <View
+        android:id="@+id/displayColor"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btnChangeImage"
+        app:layout_constraintStart_toStartOf="@+id/btnChangeImage"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangeImage" />
+
+    <ImageButton
+        android:id="@+id/btnCopyRGB"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewRGB"
+        app:layout_constraintTop_toTopOf="@+id/textViewRGB"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+    <ImageButton
+        android:id="@+id/btnCopyHex"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toEndOf="@+id/Hex"
+        app:layout_constraintTop_toTopOf="@+id/Hex"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
