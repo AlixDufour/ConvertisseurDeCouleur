@@ -2,6 +2,7 @@ package com.example.convertisseurdecouleur;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,10 +10,14 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import org.w3c.dom.Text;
 
 public class ImageColorsFragment extends Fragment {
 
@@ -20,6 +25,9 @@ public class ImageColorsFragment extends Fragment {
 
     ImageView imageView;
     Button importButton;
+
+    TableLayout colorTable;
+    TextView colorTableTitle;
 
     public ImageColorsFragment() {
         super(R.layout.image_colors_fragment);
@@ -31,6 +39,9 @@ public class ImageColorsFragment extends Fragment {
 
         imageView = (ImageView) getView().findViewById(R.id.imageView);
         importButton = (Button) getView().findViewById(R.id.importButton);
+
+        colorTable = (TableLayout) getView().findViewById(R.id.dominantColorsTable);
+        colorTableTitle = (TextView) getView().findViewById(R.id.dominantColorsTitle);
 
         // Import image
         importButton.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +69,21 @@ public class ImageColorsFragment extends Fragment {
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     String picturePath = cursor.getString(columnIndex);
                     cursor.close();
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                    Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+                    imageView.setImageBitmap(bitmap);
+                    updateDominantColors(bitmap);
                 }
         }
+    }
+
+    protected void updateDominantColors(Bitmap bitmap) {
+
+        // Compute the dominant colors
+
+        // Assign them to the texts and buttons
+
+        // Make the table visible
+        colorTableTitle.setVisibility(View.VISIBLE);
+        colorTable.setVisibility(View.VISIBLE);
     }
 }
