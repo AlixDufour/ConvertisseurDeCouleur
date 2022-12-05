@@ -129,6 +129,30 @@ public class ColorPickerFragment extends Fragment {
             clipboard.setPrimaryClip(clip);
             Toast.makeText(getContext(), "Copied to clipboard!", Toast.LENGTH_SHORT).show();
         });
+
+        copyHEX = view.findViewById(R.id.pickerCopyHEX);
+        copyHEX.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager)getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", "#"+hex.getText().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getContext(), "Copied to clipboard!", Toast.LENGTH_SHORT).show();
+        });
+
+        copyHSV = view.findViewById(R.id.pickerCopyHSV);
+        copyHSV.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager)getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", "hsv(" + hsvH.getText() + ", " + hsvS.getText() + ", " + hsvV.getText() + ")");
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getContext(), "Copied to clipboard!", Toast.LENGTH_SHORT).show();
+        });
+
+        copyHSL = view.findViewById(R.id.pickerCopyHSL);
+        copyHSL.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager)getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", "hsl(" + hslH.getText() + ", " + hslS.getText() + ", " + hslL.getText() + ")");
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getContext(), "Copied to clipboard!", Toast.LENGTH_SHORT).show();
+        });
     }
 
     public void openColorPicker(){

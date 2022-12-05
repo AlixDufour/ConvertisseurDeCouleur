@@ -185,7 +185,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textHSV" />
 
     <ImageButton
-        android:id="@+id/btnCopyHSL"
+        android:id="@+id/pickerCopyHSL"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -285,7 +285,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textHEX" />
 
     <ImageButton
-        android:id="@+id/btnCopyHSV"
+        android:id="@+id/pickerCopyHSV"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
