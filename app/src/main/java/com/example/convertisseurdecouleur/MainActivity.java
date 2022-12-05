@@ -38,38 +38,11 @@ public class MainActivity extends AppCompatActivity {
             // Demande de permission sinon
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST);
         }
-
-        // Dynamic fragment switch
-        //if (savedInstanceState == null) {
-        //    getSupportFragmentManager().beginTransaction()
-        //            .setReorderingAllowed(true)
-        //            .add(R.id.fragment_container_view, ImageColorsFragment.class, null)
-        //            .commit();
-        //}
         setContentView(R.layout.activity_main);
 
-        Button changeImage = findViewById(R.id.buttonImage);
-        Button changePicker = findViewById(R.id.buttonPicker);
-
-        changeImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent change = new Intent(MainActivity.this, ImagePicker.class);
-                startActivity(change);
-            }
-        });
-
-        changePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent change = new Intent(MainActivity.this, ColorPicker.class);
-                startActivity(change);
-            }
-        });
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //fragment de base (surement convertisseur)
-        //getSupportFragmentManager().beginTransaction().replace(R.id.container, 'fragment').commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, 'fragment').commit();
 
         /*
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

@@ -4,27 +4,36 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class ColorPicker extends AppCompatActivity {
+public class ColorPickerFragment extends Fragment {
     Button btn;
     View colorView;
     int defaultColor;
 
+
+    public ColorPickerFragment(){
+
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_colorpicker);
+    }
 
-        btn = findViewById(R.id.btn);
-        colorView = findViewById(R.id.viewPicker);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        defaultColor = ContextCompat.getColor(ColorPicker.this, com.google.android.material.R.color.design_default_color_primary);
+        btn = view.findViewById(R.id.btn);
+        colorView = view.findViewById(R.id.viewPicker);
+
+        defaultColor = ContextCompat.getColor(getContext(), com.google.android.material.R.color.design_default_color_primary);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
