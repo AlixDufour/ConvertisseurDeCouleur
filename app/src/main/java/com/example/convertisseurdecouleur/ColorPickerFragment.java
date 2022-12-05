@@ -19,6 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import java.util.regex.Pattern;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ColorPickerFragment extends Fragment {
@@ -30,6 +33,9 @@ public class ColorPickerFragment extends Fragment {
     ImageButton copyRGB, copyHEX, copyHSL, copyHSV;
     View colorView;
     EditText rgbR, rgbG, rgbB, hex, hslH, hslS, hslL, hsvH, hsvS, hsvV;
+
+    //pour trier les changements dans les edits text entre ceux de l'utilisateur et ceux du programme
+    boolean canlisteninput = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -58,22 +64,60 @@ public class ColorPickerFragment extends Fragment {
         hsvS=view.findViewById(R.id.pickerHSVEditS);
         hsvV=view.findViewById(R.id.pickerHSVEditV);
 
-        defaultColor = ContextCompat.getColor(getContext(), R.color.white);
-        couleur.setColor(Color.WHITE);
-        colorView.setBackgroundColor(couleur.getColor());
+        defaultColor = ContextCompat.getColor(getContext(), R.color.background_icon_selected);
+
+        couleur.setColor(defaultColor);
         updateEditText();
 
-        rgbR.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        View.OnFocusChangeListener focusChangeListener = (v, b) -> {
+            if (rgbR == v || rgbG == v || rgbB == v) {
+                if(rgbR.getText().toString().matches(""))
+                    rgbR.setText("0");
+                if(rgbB.getText().toString().matches(""))
+                    rgbB.setText("0");
+                if(rgbG.getText().toString().matches(""))
+                    rgbG.setText("0");
+                couleur.setFromRGB(Integer.parseInt(rgbR.getText().toString()), Integer.parseInt(rgbG.getText().toString()), Integer.parseInt(rgbB.getText().toString()));
+            } else if (hsvH == v || hsvS == v || hsvV == v) {
+                if(hsvH.getText().toString().matches(""))
+                    hsvH.setText("0");
+                if(hsvS.getText().toString().matches(""))
+                    hsvS.setText("0");
+                if(hsvV.getText().toString().matches(""))
+                    hsvV.setText("0");
+                couleur.setFromHSV(Integer.parseInt(hsvH.getText().toString()), Integer.parseInt(hsvS.getText().toString()), Integer.parseInt(hsvV.getText().toString()));
+            }else if (hslH == v || hslS == v || hslL == v) {
+                if(hslH.getText().toString().matches(""))
+                    hslH.setText("0");
+                if(hslS.getText().toString().matches(""))
+                    hslS.setText("0");
+                if(hslL.getText().toString().matches(""))
+                    hslL.setText("0");
+                couleur.setFromHSL(Integer.parseInt(hslH.getText().toString()), Integer.parseInt(hslS.getText().toString()), Integer.parseInt(hslL.getText().toString()));
+            }else {
+                if (!hex.getText().toString().matches("[a-f0-9A-F]{6}")) {
+                    hex.setText("FFFFFF");
+                    Toast.makeText(getContext(),"Incorrect HEX format", Toast.LENGTH_SHORT).show();
+                }
+                couleur.setFromStringHEX(hex.getText().toString());
+            }
+            updateEditText();
+        };
 
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
+
+        rgbR.setOnFocusChangeListener(focusChangeListener);
+        rgbG.setOnFocusChangeListener(focusChangeListener);
+        rgbB.setOnFocusChangeListener(focusChangeListener);
+
+        hsvH.setOnFocusChangeListener(focusChangeListener);
+        hsvS.setOnFocusChangeListener(focusChangeListener);
+        hsvV.setOnFocusChangeListener(focusChangeListener);
+
+        hslH.setOnFocusChangeListener(focusChangeListener);
+        hslS.setOnFocusChangeListener(focusChangeListener);
+        hslL.setOnFocusChangeListener(focusChangeListener);
+
+        hex.setOnFocusChangeListener(focusChangeListener);
 
         btnPick = view.findViewById(R.id.pickerOpenPaletteToPick);
         btnPick.setOnClickListener(view1 -> openColorPicker());
@@ -118,6 +162,7 @@ public class ColorPickerFragment extends Fragment {
         hsvS.setText(String.format("%,.0f",couleur.getHsvS()));
         hsvV.setText(String.format("%,.0f",couleur.getHsvV()));
 
+        colorView.setBackgroundColor(couleur.getColor());
     }
 
 }

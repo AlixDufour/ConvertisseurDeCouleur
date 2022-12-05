@@ -50,11 +50,7 @@ public class Couleur {
     }
 
     public int setFromStringHEX(String hexa){
-        String reg = "#[a-f0-9A-F]{6}";
-        if (!Pattern.matches(reg, hexa)) {
-            hexa = "#ffffff";
-        }
-        color= Color.parseColor(hexa);
+        color= Color.parseColor("#"+hexa);
         return color;
     }
 
@@ -173,33 +169,5 @@ public class Couleur {
     public int getGreen(){
         return android.graphics.Color.green(color);
     }
-
-    /*
-    public String ColorToHex() {
-        int alpha = android.graphics.Color.alpha(color);
-        int blue = android.graphics.Color.blue(color);
-        int green = android.graphics.Color.green(color);
-        int red = android.graphics.Color.red(color);
-
-        String alphaHex = To00Hex(alpha);
-        String blueHex = To00Hex(blue);
-        String greenHex = To00Hex(green);
-        String redHex = To00Hex(red);
-
-        // hexBinary value: aabbggrr
-        StringBuilder str = new StringBuilder("#");
-        str.append(alphaHex);
-        str.append(blueHex);
-        str.append(greenHex);
-        str.append(redHex );
-
-        return str.toString();
-    }
-
-    private static String To00Hex(int value) {
-        String hex = "00".concat(Integer.toHexString(value));
-        return hex.substring(hex.length()-2, hex.length());
-    }
-    */
 
 }
