@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/pickerCouleurResultat"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:background="#000000"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textRGB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="216dp"
+        android:text="@string/rgb"
+        android:textColor="@color/grey"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/pickerCopyRGB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/textRGB"
+        android:contentDescription="Copy RGB value"
+        app:layout_constraintBottom_toBottomOf="@+id/textRGB"
+        app:layout_constraintStart_toEndOf="@+id/textRGB"
+        app:layout_constraintTop_toTopOf="@+id/textRGB"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+    <View
+        android:id="@+id/pickerRedView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/textRGB"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:background="@color/red"
+        app:layout_constraintStart_toStartOf="@+id/textRGB"
+        app:layout_constraintTop_toBottomOf="@+id/textRGB" />
+
+    <View
+        android:id="@+id/pickerGreenView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/pickerRedView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:background="@color/green"
+        app:layout_constraintStart_toEndOf="@+id/pickerRedView"
+        app:layout_constraintTop_toTopOf="@+id/pickerRedView" />
+
+    <View
+        android:id="@+id/pickerBlueView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/pickerGreenView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:background="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/pickerEditRgbGreen"
+        app:layout_constraintTop_toTopOf="@+id/pickerGreenView" />
+
+    <EditText
+        android:id="@+id/pickerEditRgbRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pickerRedView"
+        android:layout_marginStart="5dp"
+        android:hint="255"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pickerRedView"
+        app:layout_constraintStart_toEndOf="@+id/pickerRedView"
+        app:layout_constraintTop_toTopOf="@+id/pickerRedView" />
+
+    <EditText
+        android:id="@+id/pickerEditRgbGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pickerGreenView"
+        android:layout_marginStart="5dp"
+        android:hint="255"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pickerGreenView"
+        app:layout_constraintStart_toEndOf="@+id/pickerGreenView"
+        app:layout_constraintTop_toTopOf="@+id/pickerGreenView" />
+
+    <EditText
+        android:id="@+id/pickerEditRgbBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pickerBlueView"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/pickerBlueView"
+        android:hint="255"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pickerBlueView"
+        app:layout_constraintStart_toEndOf="@+id/pickerBlueView"
+        app:layout_constraintTop_toTopOf="@+id/pickerBlueView" />
+
+    <TextView
+        android:id="@+id/textHEX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/hex"
+        android:textColor="@color/grey"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textRGB"
+        app:layout_constraintTop_toBottomOf="@+id/pickerBlueView" />
+
+    <ImageButton
+        android:id="@+id/pickerCopyHEX"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/textHEX"
+        android:contentDescription="Copy HEX value"
+        app:layout_constraintBottom_toBottomOf="@+id/textHEX"
+        app:layout_constraintStart_toEndOf="@+id/textHEX"
+        app:layout_constraintTop_toTopOf="@+id/textHEX"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+    <TextView
+        android:id="@+id/hashtag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHEX"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="8dp"
+        android:text="#"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/pickerHexEdit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/textHEX"
+        app:layout_constraintTop_toBottomOf="@+id/textHEX" />
+
+    <EditText
+        android:id="@+id/pickerHexEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hashtag"
+        android:layout_toEndOf="@+id/hashtag"
+        android:hint="0123456"
+        android:inputType="text"
+        android:maxLength="6"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hashtag"
+        app:layout_constraintStart_toEndOf="@+id/hashtag"
+        app:layout_constraintTop_toTopOf="@+id/hashtag" />
+
+    <TextView
+        android:id="@+id/textHSL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="HSL"
+        android:textColor="@color/grey"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textHSV"
+        app:layout_constraintTop_toBottomOf="@+id/textHSV" />
+
+    <ImageButton
+        android:id="@+id/btnCopyHSL"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/textHSL"
+        android:contentDescription="Copy HSL value"
+        app:layout_constraintBottom_toBottomOf="@+id/textHSL"
+        app:layout_constraintStart_toEndOf="@+id/textHSL"
+        app:layout_constraintTop_toTopOf="@+id/textHSL"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+    <TextView
+        android:id="@+id/H1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSL"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="8dp"
+        android:text="H : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/textHSV"
+        app:layout_constraintTop_toBottomOf="@+id/textHSV" />
+
+    <EditText
+        android:id="@+id/pickerHSLEditH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/H1"
+        android:layout_toEndOf="@+id/H1"
+        android:hint="320"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/H2"
+        app:layout_constraintStart_toEndOf="@+id/H2" />
+
+    <TextView
+        android:id="@+id/S1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSL"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/pickerHSLEditH"
+        android:paddingBottom="8dp"
+        android:text="S : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/pickerHSVEditH"
+        app:layout_constraintTop_toTopOf="@+id/H1" />
+
+    <EditText
+        android:id="@+id/pickerHSLEditS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/S1"
+        android:layout_toEndOf="@+id/S1"
+        android:hint="100"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/S2"
+        app:layout_constraintStart_toEndOf="@+id/S2" />
+
+    <TextView
+        android:id="@+id/L"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSL"
+        android:layout_toEndOf="@+id/pickerHSLEditS"
+        android:paddingBottom="8dp"
+        android:text="L : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/V"
+        app:layout_constraintTop_toTopOf="@+id/H2" />
+
+    <EditText
+        android:id="@+id/pickerHSLEditL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/L"
+        android:layout_toEndOf="@+id/L"
+        android:hint="100"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/L"
+        app:layout_constraintStart_toEndOf="@+id/L" />
+
+    <TextView
+        android:id="@+id/textHSV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="HSV"
+        android:textColor="@color/grey"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textHEX"
+        app:layout_constraintTop_toBottomOf="@+id/textHEX" />
+
+    <ImageButton
+        android:id="@+id/btnCopyHSV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/textHSV"
+        android:contentDescription="Copy HSV value"
+        app:layout_constraintBottom_toBottomOf="@+id/textHSV"
+        app:layout_constraintStart_toEndOf="@+id/textHSV"
+        app:layout_constraintTop_toTopOf="@+id/textHSV"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+
+    <TextView
+        android:id="@+id/H2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSV"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="8dp"
+        android:text="H : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/H1"
+        app:layout_constraintTop_toBottomOf="@+id/textHSL" />
+
+    <EditText
+        android:id="@+id/pickerHSVEditH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/H2"
+        android:layout_toEndOf="@+id/H2"
+        android:hint="320"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/H1"
+        app:layout_constraintStart_toEndOf="@+id/H1" />
+
+    <TextView
+        android:id="@+id/S2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSV"
+        android:layout_toEndOf="@+id/pickerHSVEditH"
+        android:paddingBottom="8dp"
+        android:text="S : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/S1"
+        app:layout_constraintTop_toTopOf="@+id/H2" />
+
+
+    <EditText
+        android:id="@+id/pickerHSVEditS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/S2"
+        android:layout_toEndOf="@+id/S2"
+        android:hint="100"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/S1"
+        app:layout_constraintStart_toEndOf="@+id/S1" />
+
+    <TextView
+        android:id="@+id/V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHSV"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/pickerHSVEditS"
+        android:paddingBottom="8dp"
+        android:text="V : "
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/pickerHSVEditS"
+        app:layout_constraintTop_toTopOf="@+id/S1" />
+
+    <EditText
+        android:id="@+id/pickerHSVEditV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/V"
+        android:layout_toEndOf="@+id/V"
+        android:autofillHints=""
+        android:hint="100"
+        android:inputType="text"
+        android:maxLength="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/V"
+        app:layout_constraintStart_toEndOf="@+id/V" />
+
+    <Button
+        android:id="@+id/pickerOpenPaletteToPick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/pick_color"
+        app:layout_constraintBottom_toBottomOf="@+id/pickerCouleurResultat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pickerCouleurResultat"
+        app:layout_constraintTop_toTopOf="@+id/pickerCouleurResultat" />
+</androidx.constraintlayout.widget.ConstraintLayout>

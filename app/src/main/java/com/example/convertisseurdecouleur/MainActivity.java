@@ -1,30 +1,25 @@
 package com.example.convertisseurdecouleur;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import android.view.MenuItem;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     //import des fragments
-
+    ColorPickerFragment colorPickerFragment = new ColorPickerFragment();
+    ImageColorsFragment imageColorsFragment = new ImageColorsFragment();
+    ImagePickerFragment imagePickerFragment = new ImagePickerFragment();
 
     private static final int PERMISSIONS_REQUEST = 0;
 
@@ -38,44 +33,42 @@ public class MainActivity extends AppCompatActivity {
             // Demande de permission sinon
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST);
         }
+
+        //on met la vue
         setContentView(R.layout.activity_main);
 
 
         //fragment de base (surement convertisseur)
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, 'fragment').commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, colorPickerFragment).commit();
 
-        /*
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case fragment convert :
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, 'convert').commit();
-                        return true;
-                    case fragment picker :
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, 'picker').commit();
-                        return true;
-                    case fragment image color :
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, 'image color').commit();
-                        return true;
-                }
-                return false;
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.converter :
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, colorPickerFragment).commit();
+                    return true;
+                case R.id.color_picker:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container,imagePickerFragment ).commit();
+                    return true;
+                case R.id.image_color:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, imageColorsFragment).commit();
+                    return true;
             }
-        });*/
+            return false;
+        });
     }
 
     // Toaster for permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+        if (requestCode == PERMISSIONS_REQUEST) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 

@@ -27,14 +27,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".ImagePicker"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".ColorPickerFragment"
-            android:exported="true">
-        </activity>
     </application>
 
 </manifest>

@@ -52,60 +52,37 @@ public class ImageColorsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        imageView = (ImageView) getView().findViewById(R.id.imageView);
-        importButton = (Button) getView().findViewById(R.id.importButton);
+        imageView =  view.findViewById(R.id.imageView);
+        importButton =  view.findViewById(R.id.importButton);
 
-        colorTable = (TableLayout) getView().findViewById(R.id.dominantColorsTable);
-        colorTableTitle = (TextView) getView().findViewById(R.id.dominantColorsTitle);
+        colorTable = view.findViewById(R.id.dominantColorsTable);
+        colorTableTitle =  view.findViewById(R.id.dominantColorsTitle);
 
         // DOMINANT COLORS
-        colorValue1 = (TextView) getView().findViewById(R.id.color1Value);
-        colorValue2 = (TextView) getView().findViewById(R.id.color2Value);
-        colorValue3 = (TextView) getView().findViewById(R.id.color3Value);
-        colorValue4 = (TextView) getView().findViewById(R.id.color4Value);
-        colorBox1 = (View) getView().findViewById(R.id.colorDominant1);
-        colorBox2 = (View) getView().findViewById(R.id.colorDominant2);
-        colorBox3 = (View) getView().findViewById(R.id.colorDominant3);
-        colorBox4 = (View) getView().findViewById(R.id.colorDominant4);
-        colorButton1 = (Button) getView().findViewById(R.id.colorDominant1Text);
-        colorButton2 = (Button) getView().findViewById(R.id.colorDominant2Text);
-        colorButton3 = (Button) getView().findViewById(R.id.colorDominant3Text);
-        colorButton4 = (Button) getView().findViewById(R.id.colorDominant4Text);
+        colorValue1 = view.findViewById(R.id.color1Value);
+        colorValue2 = view.findViewById(R.id.color2Value);
+        colorValue3 = view.findViewById(R.id.color3Value);
+        colorValue4 = view.findViewById(R.id.color4Value);
+        colorBox1 = view.findViewById(R.id.colorDominant1);
+        colorBox2 = view.findViewById(R.id.colorDominant2);
+        colorBox3 = view.findViewById(R.id.colorDominant3);
+        colorBox4 = view.findViewById(R.id.colorDominant4);
+        colorButton1 = view.findViewById(R.id.colorDominant1Text);
+        colorButton2 = view.findViewById(R.id.colorDominant2Text);
+        colorButton3 = view.findViewById(R.id.colorDominant3Text);
+        colorButton4 = view.findViewById(R.id.colorDominant4Text);
 
         // Import image
-        importButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
-            }
+        importButton.setOnClickListener(view1 -> {
+            Intent i = new Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(i, RESULT_LOAD_IMAGE);
         });
 
-        colorButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                copyColorFromNumber(1);
-            }
-        });
-        colorButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                copyColorFromNumber(2);
-            }
-        });
-        colorButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                copyColorFromNumber(3);
-            }
-        });
-        colorButton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                copyColorFromNumber(4);
-            }
-        });
+        colorButton1.setOnClickListener(view12 -> copyColorFromNumber(1));
+        colorButton2.setOnClickListener(view13 -> copyColorFromNumber(2));
+        colorButton3.setOnClickListener(view14 -> copyColorFromNumber(3));
+        colorButton4.setOnClickListener(view15 -> copyColorFromNumber(4));
     }
 
     // Replace image

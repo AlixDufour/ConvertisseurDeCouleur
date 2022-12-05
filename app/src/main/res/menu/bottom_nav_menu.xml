@@ -5,11 +5,11 @@
         android:icon="@drawable/ic_baseline_compare_arrows_24"
         android:title="" />
 
-    <item android:id="@+id/color_picker"
-        android:icon="@drawable/ic_baseline_colorize_24"
-        android:title="" />
-
     <item android:id="@+id/image_color"
         android:icon="@drawable/ic_baseline_image_search_24"
         android:title=""/>
+    <item
+        android:id="@+id/color_picker"
+        android:icon="@drawable/ic_baseline_colorize_24"
+        android:title="" />
 </menu>

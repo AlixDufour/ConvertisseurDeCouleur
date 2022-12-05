@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -10,24 +9,43 @@
         android:id="@+id/btnChangeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="change image"
+        android:text="Load image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgColorPicker" />
+        app:layout_constraintTop_toBottomOf="@+id/imageBackground" />
+
+    <View
+        android:id="@+id/imageBackground"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="8dp"
+        android:background="#EFEFEF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Veuillez charger une image"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBackground"
+        app:layout_constraintEnd_toEndOf="@+id/imageBackground"
+        app:layout_constraintStart_toStartOf="@+id/imageBackground"
+        app:layout_constraintTop_toTopOf="@+id/imageBackground" />
 
     <ImageView
         android:id="@+id/imgColorPicker"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:background="@color/grey"
-        android:src="@drawable/colorpicker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBackground"
+        app:layout_constraintEnd_toEndOf="@+id/imageBackground"
+        app:layout_constraintStart_toStartOf="@+id/imageBackground"
+        app:layout_constraintTop_toTopOf="@+id/imageBackground" />
 
     <TextView
         android:id="@+id/textViewRGB"
@@ -49,17 +67,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewRGB" />
 
     <TextView
-        android:id="@+id/editRedColor"
-        android:layout_width="153dp"
-        android:layout_height="25dp"
+        android:id="@+id/imagepickRedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="number"
         android:text="0"
         android:textAlignment="textStart"
-        android:textSize="13dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/view" />
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <View
         android:id="@+id/view2"
@@ -71,16 +90,17 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
-        android:id="@+id/editGreenColor"
+        android:id="@+id/imagepickGreenValue"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="number"
         android:text="0"
-        android:textSize="13dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintStart_toEndOf="@+id/view2" />
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <View
         android:id="@+id/view3"
@@ -92,37 +112,38 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
-        android:id="@+id/editBlueColor"
+        android:id="@+id/imagepickBlueValue"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="number"
         android:text="0"
-        android:textSize="15dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintStart_toEndOf="@+id/view3" />
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <TextView
         android:id="@+id/Hex"
         android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
         android:text="HEX:"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="@+id/textViewRGB"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
-        android:id="@+id/editHexColor"
+        android:id="@+id/imagepickHexValue"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="#ffffff"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="@+id/editBlueColor"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/imagepickBlueValue"
         app:layout_constraintTop_toBottomOf="@+id/Hex" />
 
     <View
@@ -136,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnChangeImage" />
 
     <ImageButton
-        android:id="@+id/btnCopyRGB"
+        android:id="@+id/pickerCopyRGB"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         app:layout_constraintStart_toEndOf="@+id/textViewRGB"
